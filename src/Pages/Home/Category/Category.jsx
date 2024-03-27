@@ -3,15 +3,20 @@ import { Pagination } from "swiper"
 import "swiper/css"
 import "swiper/css/pagination"
 import slide1 from "../../../assets/home/slide1.jpg"
-
 import slide2 from "../../../assets/home/slide2.jpg"
 import slide3 from "../../../assets/home/slide3.jpg"
 import slide4 from "../../../assets/home/slide4.jpg"
 import slide5 from "../../../assets/home/slide5.jpg"
+import SectionTitle from "../../../Component/Shared Component/SectionTitle/SectionTitle"
 
 const Category = () => {
     return (
         <div>
+            <SectionTitle 
+            heading={'Order Online'}
+            subHeading={"From 11:00 am to 10:00 pm"}>
+
+            </SectionTitle>
             <Swiper
                 slidesParView={4}
                 spaceBetween={30}
@@ -20,22 +25,27 @@ const Category = () => {
                     clickable: true
                 }}
                 modules={[Pagination]}
-                className="mySwiper"
+                className="mySwiper mb-24"
             >
                 <SwiperSlide>
                     <img src={slide1} alt="" />
+                    <h3>Salads</h3>
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={slide2} alt="" />
+                    <h3>Pizza</h3>
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={slide3} alt="" />
+                    <h3>Soups</h3>
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={slide4} alt="" />
+                    <h3>Deserts</h3>
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={slide5} alt="" />
+                    <h3>Salads</h3>
                 </SwiperSlide>
 
             </Swiper>
