@@ -54,7 +54,7 @@ const Navbar = () => {
 
     return (
         // <Container>
-            <div className="container mx-auto h-[100px] z-10 flex justify-between items-center border-b-[1px]">
+            <div className="container fixed opacity-25 bg-black text-white mx-auto h-[100px] z-10 flex justify-between items-center border-b-[1px]">
 
                 <div className="w-[250px] h-[70px]">
                     <img src={logo} alt="logo" className="w-[[80%] h-full object-cover" />
