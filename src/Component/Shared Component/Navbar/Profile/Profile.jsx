@@ -3,11 +3,11 @@ import { FaBookOpenReader, FaHouse } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlineDashboard } from "react-icons/md";
-import { useContext } from "react";
-import { AuthContext } from "../../../../Provider/AuthContext";
+// import { useContext } from "react";
+// import { AuthContext } from "../../../../Provider/AuthContext";
 
 const Profile = () => {
-    const { user, userSignOut } = useContext(AuthContext)
+    // const { user, userSignOut } = useContext(AuthContext)
     // const[isTrue, setIsTrue] = useState(false)
     // console.log(user)
 
@@ -26,14 +26,16 @@ const Profile = () => {
                 <div>
 
                     {
-                        user ? <div className="h-16 w-16 rounded-full border-2 border-blue-500">
-                            <img src={user?.photoURL} alt="user photo" className="w-full h-full object-cover rounded-full" />
-                        </div> :
+                        // user ? <div className="h-16 w-16 rounded-full border-2 border-blue-500">
+                        //     <img src={user?.photoURL} alt="user photo" className="w-full h-full object-cover rounded-full" />
+                        // </div> :
                             <FaRegUserCircle size={50} />}
                 </div>
                 <div className="space-y-2">
-                    <h1 className="text-lg font-medium">{user ? user?.displayName : "Jhon Doe Park"}</h1>
-                    <h2>{user ? user?.email : "exampleuser123@gmail.com"}</h2>
+                    {/* <h1 className="text-lg font-medium">{user ? user?.displayName : "Jhon Doe Park"}</h1> */}
+                    {/* <h2>{user ? user?.email : "exampleuser123@gmail.com"}</h2> */}
+                    <p>User Name</p>
+                    <p>User Email</p>
                     <Link to={"/dashboard/myprofile"}><button className="bg-[#646cff] p-3 mt-2 font-semibold text-white text-base">Edit profile</button></Link>
                 </div>
             </div>

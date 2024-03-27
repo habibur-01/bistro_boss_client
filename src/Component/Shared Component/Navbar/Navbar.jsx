@@ -3,14 +3,14 @@ import { FaUserCircle } from "react-icons/fa";
 import logo from '../../../assets/icon/correct.png'
 // import Container from "../Container/Container";
 // import Profile from "../Profile/Profile";
-import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../../../Provider/AuthContext";
+import {  useEffect, useRef, useState } from "react";
+// import { AuthContext } from "../../../Provider/AuthContext";
 import Profile from "./Profile/Profile";
 
 
 const Navbar = () => {
     const [isProfileView, setIsProfileView] = useState(false)
-    const {user} = useContext(AuthContext)
+    // const {user} = useContext(AuthContext)
     const menuRef = useRef();
 
 
@@ -33,12 +33,13 @@ const Navbar = () => {
                 color: isActive? "#646cff":"",
             };
         }}>Contact</NavLink></li>
-        <li className={`${user? 'hidden': 'block'}`}><NavLink to={"/signin"} style={({ isActive }) => {
+        <li ><NavLink to={"/signin"} style={({ isActive }) => {
             return {
                 fontWeight: isActive ? "bold" : "",
                 color: isActive? "#646cff":"",
             };
         }}>Sign In</NavLink></li>
+        {/* className={`${user? 'hidden': 'block'}`} */}
         
     </>
 
@@ -53,11 +54,12 @@ const Navbar = () => {
 
     return (
         // <Container>
-            <div className="w-full h-[100px] z-10 flex justify-between items-center border-b-[1px]">
+            <div className="container mx-auto h-[100px] z-10 flex justify-between items-center border-b-[1px]">
 
                 <div className="w-[250px] h-[70px]">
                     <img src={logo} alt="logo" className="w-[[80%] h-full object-cover" />
                 </div>
+                
 
 
                 <div className="hidden md:block">
@@ -68,9 +70,9 @@ const Navbar = () => {
                 <div className="relative menu-container cursor-pointer" ref={menuRef}>
                     <div onClick={() => setIsProfileView(!isProfileView)}>
                         {
-                            user? <div className="h-14 w-14">
-                                 <img src={user?.photoURL} alt="user photo" className="w-full h-full object-cover rounded-full" />
-                            </div>:
+                            // user? <div className="h-14 w-14">
+                            //      <img src={user?.photoURL} alt="user photo" className="w-full h-full object-cover rounded-full" />
+                            // </div>:
                             <FaUserCircle size={40}/>
                         }
                     </div>
