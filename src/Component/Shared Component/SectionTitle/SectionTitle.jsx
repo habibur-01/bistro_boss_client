@@ -1,13 +1,19 @@
+import { PropTypes } from "prop-types";
 
 
 const SectionTitle = ({heading, subHeading}) => {
     return (
-        <div>
-            <h1>{heading}</h1>
-            <h3>{subHeading}</h3>
+        <div className="mx-auto w-3/12 text-center my-8">
+            
+            <h3 className="text-yellow-600 mb-2">---{subHeading}---</h3>
+            <h1 className=" text-3xl border-y-4 py-4">{heading}</h1>
             
         </div>
     );
 };
+SectionTitle.propTypes = {
+    heading: PropTypes.string,
+    subHeading: PropTypes.string
+}
 
 export default SectionTitle;

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-import logo from '../../../assets/icon/correct.png'
+import logo from '../../../assets/logo.png'
 // import Container from "../Container/Container";
 // import Profile from "../Profile/Profile";
 import {  useEffect, useRef, useState } from "react";
@@ -54,9 +54,9 @@ const Navbar = () => {
 
     return (
         // <Container>
-            <div className="container fixed opacity-25 bg-black text-white mx-auto h-[100px] z-10 flex justify-between items-center border-b-[1px]">
+            <div className="container fixed opacity-25 bg-black text-white px-4 h-[100px] z-10 flex justify-between items-center">
 
-                <div className="w-[250px] h-[70px]">
+                <div className="w-[100px] h-[70px]">
                     <img src={logo} alt="logo" className="w-[[80%] h-full object-cover" />
                 </div>
                 
