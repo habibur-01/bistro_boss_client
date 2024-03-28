@@ -8,7 +8,7 @@ const CoverHeader = ({img , title, subTitle}) => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content w-3/5 h-80 bg-[#15151576] backdrop-blur-sm text-center text-neutral-content">
                 <div className="max-w-md">
-                    <h1 className="mb-5 text-5xl font-bold uppercase">{title}</h1>
+                    <h1 className="mb-5 text-6xl font-bold uppercase">{title}</h1>
                     <p className="mb-5 uppercase">{subTitle}</p>
                     
                 </div>
