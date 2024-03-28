@@ -24,7 +24,7 @@ const MenuCategory = ({ items, img, title, subTitle }) => {
 };
 MenuCategory.propTypes = {
     items: PropTypes.array,
-    img: PropTypes.image,
+    img: PropTypes.any,
     title: PropTypes.string,
     subTitle: PropTypes.string,
 }

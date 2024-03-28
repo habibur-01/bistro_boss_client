@@ -19,7 +19,7 @@ const CoverHeader = ({img , title, subTitle}) => {
 CoverHeader.propTypes ={
     title: PropTypes.string,
     subTitle: PropTypes.string,
-    img: PropTypes.image
+    img: PropTypes.any
 }
 
 export default CoverHeader;
