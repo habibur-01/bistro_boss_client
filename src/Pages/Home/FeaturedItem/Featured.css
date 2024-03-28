@@ -3,4 +3,7 @@
     height: 800px;
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #151515a9;
+    background-blend-mode: overlay;
 }
