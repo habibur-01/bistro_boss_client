@@ -1,20 +1,13 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../Component/Shared Component/SectionTitle/SectionTitle";
 import MenuItem from "../../../Component/Shared Component/MenuItem/MenuItem";
+import useMenu from "../../../hooks/useMenu/useMenu";
 
 
-const PoplerMenu = () => {
-    const [menu, setMenu] = useState([])
+const PopularMenu = () => {
+    const [ menu ]   = useMenu()
 
-    useEffect(()=> {
-        fetch('/menu.json')
-        .then(res=> res.json())
-        .then(data => {
-            setMenu(data)
-            const popularItem = data.filter(item => item.category === 'popular')
-            setMenu(popularItem)
-        })
-    },[])
+    const popularItem = menu.filter(item => item.category === 'popular')
+   
     // console.log(menu)
 
     return (
@@ -24,9 +17,9 @@ const PoplerMenu = () => {
             subHeading={'Popular Items'}
             >  
             </SectionTitle>
-            <div className="grid md:grid-cols-2 gape-4 my-24">
+            <div className="grid md:grid-cols-2 gap-6 my-24">
                 {
-                    menu?.map(item => <MenuItem key={item._id} item={item} ></MenuItem>)
+                    popularItem?.map(item => <MenuItem key={item._id} item={item} ></MenuItem>)
                 }
             </div>
             
@@ -34,4 +27,4 @@ const PoplerMenu = () => {
     );
 };
 
-export default PoplerMenu;
+export default PopularMenu;
