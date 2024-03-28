@@ -1,0 +1,6 @@
+.featured-item{
+    background: url('../../../assets/home/chef-service.jpg');
+    height: 800px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

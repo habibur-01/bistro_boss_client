@@ -24,7 +24,7 @@ const PoplerMenu = () => {
             subHeading={'Popular Items'}
             >  
             </SectionTitle>
-            <div className="grid md:grid-cols-2 gape-4">
+            <div className="grid md:grid-cols-2 gape-4 my-24">
                 {
                     menu?.map(item => <MenuItem key={item.id} item={item} ></MenuItem>)
                 }
