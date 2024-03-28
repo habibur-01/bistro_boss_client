@@ -31,10 +31,10 @@ const Menu = () => {
             </div>
             <MenuCategory items={offered}></MenuCategory>
             {/* desserts item */}
-            <MenuCategory items={dessert} title={'Desserts'} img={dessertBg} subTitle={`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`}></MenuCategory>
-            <MenuCategory items={pizza} title={'Pizza'} img={PizzaBg} subTitle={`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`}></MenuCategory>
-            <MenuCategory items={salad} title={'Salads'} img={saladBg} subTitle={`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`}></MenuCategory>
-            <MenuCategory items={soup} title={'Soups'} img={soupBg} subTitle={`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`}></MenuCategory>
+            <MenuCategory items={dessert} title={'dessert'} img={dessertBg} subTitle={`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`}></MenuCategory>
+            <MenuCategory items={pizza} title={'pizza'} img={PizzaBg} subTitle={`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`}></MenuCategory>
+            <MenuCategory items={salad} title={'salad'} img={saladBg} subTitle={`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`}></MenuCategory>
+            <MenuCategory items={soup} title={'soup'} img={soupBg} subTitle={`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`}></MenuCategory>
 
 
         </div>

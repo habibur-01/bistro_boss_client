@@ -39,7 +39,7 @@ const Navbar = () => {
                 color: isActive? "#646cff":"",
             };
         }}>Dashboard</NavLink></li>
-        <li><NavLink to={"/shop"} style={({ isActive }) => {
+        <li><NavLink to={"/shop/salad"} style={({ isActive }) => {
             return {
                 fontWeight: isActive ? "bold" : "",
                 color: isActive? "#646cff":"",

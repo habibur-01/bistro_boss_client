@@ -1,6 +1,7 @@
 import { PropTypes } from "prop-types";
 import MenuItem from "../../../Component/Shared Component/MenuItem/MenuItem";
 import CoverHeader from "../../../Component/Shared Component/CoverHeader/CoverHeader";
+import { Link } from "react-router-dom";
 
 
 const MenuCategory = ({ items, img, title, subTitle }) => {
@@ -17,7 +18,7 @@ const MenuCategory = ({ items, img, title, subTitle }) => {
                 }
             </div>
             <div className="flex justify-center">
-                <button className="btn btn-outline text-black border-0 border-b-4 mb-20 uppercase">Order Your Favourite Food</button>
+                <Link to={`/shop/${title}`}><button className="btn btn-outline text-black border-0 border-b-4 mb-20 uppercase">Order Your Favourite Food</button></Link>
             </div>
         </div>
     );
