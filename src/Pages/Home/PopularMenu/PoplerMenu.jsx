@@ -15,7 +15,7 @@ const PoplerMenu = () => {
             setMenu(popularItem)
         })
     },[])
-    console.log(menu)
+    // console.log(menu)
 
     return (
         <div>

@@ -21,18 +21,30 @@ const Navbar = () => {
                 color: isActive? "#646cff":"",
             };
         }}>Home</NavLink></li>
-        <li><NavLink to={"/contest"} style={({ isActive }) => {
-            return {
-                fontWeight: isActive ? "bold" : "",
-                color: isActive? "#646cff":"",
-            };
-        }}>Contest</NavLink></li>
         <li><NavLink to={"/contact"} style={({ isActive }) => {
             return {
                 fontWeight: isActive ? "bold" : "",
                 color: isActive? "#646cff":"",
             };
-        }}>Contact</NavLink></li>
+        }}>Contact us</NavLink></li>
+        <li><NavLink to={"/menu"} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive? "#646cff":"",
+            };
+        }}>Our Menu</NavLink></li>
+        <li><NavLink to={"/dashboard"} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive? "#646cff":"",
+            };
+        }}>Dashboard</NavLink></li>
+        <li><NavLink to={"/shop"} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive? "#646cff":"",
+            };
+        }}>Our Shop</NavLink></li>
         <li ><NavLink to={"/signin"} style={({ isActive }) => {
             return {
                 fontWeight: isActive ? "bold" : "",
@@ -54,7 +66,7 @@ const Navbar = () => {
 
     return (
         // <Container>
-            <div className="container fixed opacity-25 bg-black text-white px-4 h-[100px] z-10 flex justify-between items-center">
+            <div className="container fixed opacity-65 bg-black text-white px-4 h-[100px] z-10 flex justify-between items-center">
 
                 <div className="w-[100px] h-[70px]">
                     <img src={logo} alt="logo" className="w-[[80%] h-full object-cover" />
