@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const ImgUpload = async image =>{
+const ImgUpload = async image =>{
  const formData = new FormData();
  formData.append("image", image)
 
@@ -9,3 +9,4 @@ export const ImgUpload = async image =>{
 
  return data;
 } 
+export default ImgUpload;

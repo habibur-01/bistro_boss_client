@@ -11,13 +11,13 @@ import { axiosSecure } from "../../API/AxiosSecure/AxiosSecure"
 
 const LogIn = () => {
     const [isPassView, setIsPassView] = useState(false)
-    const { user, signInUser, signInWithGoogle } = useContext(AuthContext)
+    const { signInUser, signInWithGoogle } = useContext(AuthContext)
     const [users, setUsers] = useState([])
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || "/"
    
-    const filterUser = users.find(data => data.email === user?.email)
+    
     // console.log(filterUser)
     useEffect(() => {
         axiosSecure.get("/users")
@@ -51,6 +51,7 @@ const LogIn = () => {
             .then(result => {
                 console.log(result.user)
                 const user = { name: result.user.displayName, email: result.user.email, image: result.user.photoURL }
+                const filterUser = users.find(data => data.email === result.user.email)
                 if (!filterUser) {
                     axiosSecure.post("/users", user)
                         .then(response => {

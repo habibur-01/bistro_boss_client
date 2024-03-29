@@ -4,11 +4,11 @@ import { CiLock, CiUnlock } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { ImgUpload } from "../../API/ImgUpload/ImgUpload";
 import { AuthContext } from "../../Provider/AuthContext";
 import { updateProfile } from "firebase/auth";
-import { axiosSecure } from "../../API/AxiosSecure/AxiosSecure";
 import toast from "react-hot-toast";
+import { axiosSecure } from "../../API/AxiosSecure/AxiosSecure";
+// import ImgUpload from "../../API/ImgUpload/ImgUpload"
 
 
 const Signup = () => {
@@ -23,12 +23,16 @@ const Signup = () => {
         const name = form.name.value
         const email = form.email.value
         const password = form.password.value
-        const photo = form.photo.files[0]
+        // const photo = form.photo.files[0]
+        // const formData = new FormData();
+        // formData.append("image", photo)
 
-        const image = await ImgUpload(photo)
-        const userImage = image?.data?.display_url
+        // const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=10d60893bb2a6bdf2ef9838320f28d8d`,
+        //     formData)
+        // const image = ImgUpload(photo)
+        // const userImage = data?.data?.display_url
 
-        console.log(userImage)
+        // console.log(userImage)
 
         createUser(email, password)
             .then(result => {
@@ -36,11 +40,11 @@ const Signup = () => {
                 console.log(userInfo)
                 updateProfile(result.user, {
                     displayName: name,
-                    photoURL: image?.data?.display_url
+                    // photoURL: data?.data?.display_url
 
                 })
 
-                const user = { name, email, password, userImage }
+                const user = { name, email, password,  }
 
                 axiosSecure.post("/users", user)
                     .then(response => {

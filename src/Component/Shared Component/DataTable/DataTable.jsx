@@ -1,7 +1,10 @@
 import { PropTypes } from "prop-types"
 import Swal from "sweetalert2";
+import { axiosSecure } from "../../../API/AxiosSecure/AxiosSecure";
+import useCart from "../../../hooks/useCart/useCart";
 
 const ItemTable = ({ data, name, price, image }) => {
+    const [, refetch] = useCart()
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -13,11 +16,19 @@ const ItemTable = ({ data, name, price, image }) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+                axiosSecure.delete(`/carts/${id}`)
+                .then(result=>{
+                    if(result.data.deletedCount>0){
+                        refetch()
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                })
+              
+              
             }
           });
     }
