@@ -10,6 +10,8 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import LogIn from "../Pages/Log in/LogIn";
 import Signup from "../Pages/SignUp/SignUp";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import PrivateRoute from "../Component/PrivateRouTe/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
           path: "/contact",
           element: <ContactUs/>
         },
+        {
+          path: "/dashboard",
+          element:<PrivateRoute><Dashboard/></PrivateRoute>
+        }
       ]
     },
   ]);

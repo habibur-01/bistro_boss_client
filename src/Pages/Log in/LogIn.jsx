@@ -2,16 +2,28 @@ import { MdOutlineMail } from "react-icons/md";
 import { CiLock, CiUnlock } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
 import './style.css'
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthContext";
 import toast from "react-hot-toast";
+import { axiosSecure } from "../../API/AxiosSecure/AxiosSecure"
 
 
 const LogIn = () => {
     const [isPassView, setIsPassView] = useState(false)
-    const {signInUser} = useContext(AuthContext)
-    const navigate =useNavigate()
+    const { user, signInUser, signInWithGoogle } = useContext(AuthContext)
+    const [users, setUsers] = useState([])
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || "/"
+    console.log(users)
+    const filterUser = users.find(data => data.email === user?.email)
+    useEffect(() => {
+        axiosSecure.get("/users")
+            .then(res => {
+                setUsers(res.data)
+            })
+    }, [])
 
     const handleLogIn = e => {
         e.preventDefault()
@@ -21,16 +33,45 @@ const LogIn = () => {
         console.log(email, password)
 
         signInUser(email, password)
-        .then(result => {
-            console.log(result.user)
-            toast("Successfull log in")
-            navigate("/")
-        }).catch(error => {
-            console.error(error)
-            toast(error.message)
-        })
+            .then(result => {
+                console.log(result.user)
+                toast("Successfull log in")
+                navigate(from, { replace: true })
+            }).catch(error => {
+                console.error(error)
+                toast(error.message)
+            })
 
 
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                console.log(result.user)
+                const user = { name: result.user.displayName, email: result.user.email, image: result.user.photoURL }
+                if (!filterUser) {
+                    axiosSecure.post("/users", user)
+                        .then(response => {
+                            console.log('User added successfully:', response.data);
+
+                            if (response?.data?.acknowledged === true) {
+                                toast('User added successfully')
+                                navigate(from, { replace: true })
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error adding user:', error);
+                            toast('Error when adding user')
+                        });
+                    
+                }
+
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
     return (
         <div className="w-full min-h-[100vh] flex justify-center items-center">
@@ -50,7 +91,7 @@ const LogIn = () => {
                     <div className="inputField flex flex-col space-y-4">
                         <label htmlFor="email">Password</label>
                         <div className="inline-flex items-center relative">
-                            <input type={isPassView? "text" : "password"} name="password" id="password" autoComplete="off" placeholder="type password" />
+                            <input type={isPassView ? "text" : "password"} name="password" id="password" autoComplete="off" placeholder="type password" />
                             <div onClick={() => setIsPassView(!isPassView)} className="absolute right-2">
                                 {isPassView ? <CiUnlock size={20} /> : <CiLock size={20} />}
                             </div>
@@ -62,7 +103,7 @@ const LogIn = () => {
                 </form>
                 <div className="btn1 m-2">
                     <h1 className="text-sm text-center my-4">---Sign in with another way---</h1>
-                    <button className="inline-flex items-center justify-center space-x-4 bg-white googleBtn"><FcGoogle size={25} /> <span className="text-base hover:bold">Sign in with google</span></button>
+                    <button onClick={handleGoogleSignIn} className="inline-flex items-center justify-center space-x-4 bg-white googleBtn"><FcGoogle size={25} /> <span className="text-base hover:bold">Sign in with google</span></button>
                     <p className="text-xs md:text-sm mt-1">{`Don't have an account?`}<Link to={"/signup"}> <span className="text-[#646cff] font-bold">Sign up</span></Link></p>
                 </div>
             </div>
