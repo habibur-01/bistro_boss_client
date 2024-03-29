@@ -2,7 +2,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { CiLock, CiUnlock } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
 import './style.css'
-import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthContext";
 import toast from "react-hot-toast";

@@ -3,7 +3,7 @@ import { AiOutlineCamera } from "react-icons/ai";
 import { CiLock, CiUnlock } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ImgUpload } from "../../API/ImgUpload/ImgUpload";
 import { AuthContext } from "../../Provider/AuthContext";
 import { updateProfile } from "firebase/auth";
@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 const Signup = () => {
     const [isPassView, setIsPassView] = useState(false)
     const { createUser } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handleSignUp = async (e) => {
 
@@ -47,6 +48,7 @@ const Signup = () => {
 
                         if (response?.data?.acknowledged === true) {
                             toast('User added successfully')
+                            navigate("/login")
                         }
                     })
                     .catch(error => {
