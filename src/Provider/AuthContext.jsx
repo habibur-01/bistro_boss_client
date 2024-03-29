@@ -44,21 +44,7 @@ const AuthProvider = ({ children }) => {
     }, [])
     
 
-    // useEffect(() => {
-    //     axiosSecure.get("/contest")
-    //         .then(response => setContestData(response.data))
-    //         .catch(error => console.log(error))
-    // }, [])
-
-    // useEffect(() => {
-    //     axiosSecure.get(`/users/?email=${user?.email}`)
-    //         .then(res => {
-    //             setUserData(res.data)
-    //         }).catch(err => {
-    //             console.log(err)
-    //         })
-
-    // }, [user?.email])
+    
 
     const authInfo = {
         user,
