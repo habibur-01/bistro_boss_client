@@ -7,18 +7,18 @@ const PrivateRoute = ({children}) => {
     const {user, loading} = useAuth()
     console.log(user)
     if(loading){
-        return (<div className="w-full h-[60vh] flex justify-center items-center">
+        return (<div className="w-full h-[80vh] flex justify-center items-center">
             <span className="loading loading-ring loading-lg"></span>
         </div>)
     }
     if(user){
-        {children}
+        return children
     }
 
 
     return (
         
-        <Navigate to={"/login"}></Navigate>
+        <Navigate to="/login" state={{from: location}} replace></Navigate>
     );
 };
 PrivateRoute.propTypes={

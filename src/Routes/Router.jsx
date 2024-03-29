@@ -10,8 +10,9 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import LogIn from "../Pages/Log in/LogIn";
 import Signup from "../Pages/SignUp/SignUp";
 import ContactUs from "../Pages/ContactUs/ContactUs";
-import Dashboard from "../Pages/Dashboard/Dashboard";
 import PrivateRoute from "../Component/PrivateRouTe/PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../Pages/Dashboard/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -43,12 +44,21 @@ const router = createBrowserRouter([
           path: "/contact",
           element: <ContactUs/>
         },
-        {
-          path: "/dashboard",
-          element:<PrivateRoute><Dashboard/></PrivateRoute>
-        }
+        
       ]
     },
+    {
+      
+        path: "/dashboard",
+        element:<PrivateRoute><Dashboard/></PrivateRoute>,
+        children:[
+          {
+            path: "cart",
+            element: <Cart/>
+          }
+        ]
+      
+    }
   ]);
 
   export default router;

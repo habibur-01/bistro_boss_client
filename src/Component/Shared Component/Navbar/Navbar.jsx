@@ -31,7 +31,7 @@ const Navbar = () => {
                 color: isActive? "#646cff":"",
             };
         }}>Our Menu</NavLink></li>
-        <li><NavLink to={"/dashboard"} style={({ isActive }) => {
+        <li><NavLink to={"/dashboard/cart"} style={({ isActive }) => {
             return {
                 fontWeight: isActive ? "bold" : "",
                 color: isActive? "#646cff":"",

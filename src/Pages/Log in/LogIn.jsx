@@ -16,8 +16,9 @@ const LogIn = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || "/"
-    console.log(users)
+   
     const filterUser = users.find(data => data.email === user?.email)
+    // console.log(filterUser)
     useEffect(() => {
         axiosSecure.get("/users")
             .then(res => {
@@ -67,7 +68,7 @@ const LogIn = () => {
                     
                 }
 
-                navigate(from, { replace: true })
+                
             })
             .catch(error => {
                 console.log(error)
