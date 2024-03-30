@@ -32,7 +32,7 @@ const AddItem = () => {
          const image = await ImgUpload(imagebb)
          console.log(image)
          if(image.success){
-            const menu = {name, category:category.name, price, recipe, image:image.data.display_url}
+            const menu = {name, category:category.name, price:parseFloat(price), recipe, image:image.data.display_url}
             await axiosPublic.post("/menu", menu)
             .then(result=>{
                 console.log(result.data)
