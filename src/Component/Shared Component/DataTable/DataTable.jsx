@@ -5,6 +5,7 @@ import useCart from "../../../hooks/useCart/useCart";
 
 const ItemTable = ({ data, name, price, image }) => {
     const [, refetch] = useCart()
+    console.log(price)
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -14,24 +15,26 @@ const ItemTable = ({ data, name, price, image }) => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/carts/${id}`)
-                .then(result=>{
-                    if(result.data.deletedCount>0){
-                        refetch()
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
-                    }
-                })
-              
-              
+                    .then(result => {
+                        if (result.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+
+
             }
-          });
+        });
     }
+
+   
     return (
         <div>
             <table className="table">
@@ -42,53 +45,57 @@ const ItemTable = ({ data, name, price, image }) => {
                             #
                         </th>
                         <th>{image}</th>
-                        <th>{name}</th>
-                        <th>{price}</th>
+                        <th className="text-left">{name}</th>
+                        <th className="text-left">{price}</th>
                         <th>Action</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                {
-                    data.map(item => <tr key={item._id}>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div className="flex items-center gap-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src={item.image} alt="Avatar Tailwind CSS Component" />
+                    {
+                        data?.map(item => <tr key={item._id}>
+                            <th>
+                                <label>
+                                    <input type="checkbox" className="checkbox" />
+                                </label>
+                            </th>
+                            <td>
+                                <div className="flex items-center gap-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
+                                            <img src={item.image} alt="Avatar Tailwind CSS Component" />
+                                        </div>
                                     </div>
+
                                 </div>
+                            </td>
+                            <td>
                                 <div>
                                     <div className="font-bold">{item.name}</div>
 
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div className="font-bold">{item.price}</div>
-                        </td>
-                        <td>Purple</td>
-                        <th>
-                            <button onClick={()=>handleDelete(item._id)} className="btn btn-warning btn-xs">Delete</button>
-                        </th>
+                            </td>
+                            <td>
+                                <div className="font-bold">{item.price}</div>
+                            </td>
+
+                            <td>
+                                <button onClick={() => handleDelete(item._id)} className="btn btn-warning btn-xs">Delete</button>
+                               
+                            </td>
+                        </tr>
+                        )
+
+                    }
+                </tbody>
+                {/* foot */}
+                <tfoot>
+                    <tr>
+
                     </tr>
-                    )
+                </tfoot>
 
-                }
-            </tbody>
-            {/* foot */}
-            <tfoot>
-                <tr>
-
-                </tr>
-            </tfoot>
-
-        </table>
+            </table>
 
         </div >
     );
@@ -98,6 +105,7 @@ ItemTable.propTypes = {
     name: PropTypes.string,
     price: PropTypes.string,
     image: PropTypes.any,
+    
 }
 
 export default ItemTable;
