@@ -1,14 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { axiosSecure } from "../../../../API/AxiosSecure/AxiosSecure";
+import useAxiosSecure  from "../../../../API/AxiosSecure/AxiosSecure";
 import Swal from "sweetalert2";
 import { FaUser } from "react-icons/fa";
 
 
 const AllUsers = () => {
+    const axiosSecure =useAxiosSecure()
     const { refetch, data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users')
+            const res = await axiosSecure.get('/users',{
+                headers:{
+                    authorization: `Bearer ${localStorage.getItem('access-token')}`
+                }
+            })
             return res.data
         }
     })
