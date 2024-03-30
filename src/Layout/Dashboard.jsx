@@ -2,11 +2,33 @@ import { FaCreditCard, FaHome, FaList, FaPhone, FaShoppingBag, FaUsers } from "r
 import { FaCartFlatbedSuitcase, FaCartShopping } from "react-icons/fa6";
 import { MdOutlineMenuBook } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import useAxiosSecure from "../API/AxiosSecure/AxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../hooks/useAuth/useAuth";
+import { useEffect, useState } from "react";
+
 
 
 const Dashboard = () => {
     // #TODO:Admin from database
-    const isAdmin = true
+    const { user } = useAuth()
+    const axiosSecure = useAxiosSecure()
+    const [isAdmin, setIsAdmin] = useState(false)
+    const { data: users = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/users')
+            return res.data
+        }
+    })
+
+    useEffect(() => {
+        const filterUser = users.find(data => data.email === user.email)
+        console.log(filterUser)
+        if (filterUser?.role === 'admin') {
+            setIsAdmin(true)
+        }
+    }, [users, user.email])
     return (
         <div className="flex">
             <div className="w-64 bg-orange-400 min-h-screen">
@@ -22,7 +44,7 @@ const Dashboard = () => {
                             <>
                                 <li><NavLink to={'/dashboard/userHome'}><FaHome />User Home</NavLink></li>
                                 <li><NavLink to={'/dashboard/cart'}><FaCartShopping />My Cart</NavLink></li>
-                                <li><NavLink to={'/dashboard/payment'}><FaCreditCard />Payment History</NavLink></li>
+                                <li><NavLink to={'/dashboard/paymenthistory'}><FaCreditCard />Payment History</NavLink></li>
                                 <li><NavLink to={'/dashboard/mybooking'}><FaCartFlatbedSuitcase />My Booking</NavLink></li>
                             </>
                     }
