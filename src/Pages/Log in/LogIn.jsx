@@ -3,7 +3,7 @@ import { CiLock, CiUnlock } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
 import './style.css'
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthContext";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../API/AxiosSecure/AxiosSecure"
@@ -16,15 +16,15 @@ const LogIn = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || "/"
-   
-    
+
+
     // console.log(filterUser)
-    useEffect(() => {
-        axiosSecure.get("/users")
-            .then(res => {
-                setUsers(res.data)
-            })
-    }, [])
+    // useEffect(() => {
+    //     axiosSecure.get("/users")
+    //         .then(res => {
+    //             setUsers(res.data)
+    //         })
+    // }, [])
 
     const handleLogIn = e => {
         e.preventDefault()
@@ -46,13 +46,26 @@ const LogIn = () => {
 
     }
 
-    const handleGoogleSignIn = () => {
+    const handleGoogleSignIn =async () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
+                if(result.user.accessToken != null){
+                    axiosSecure.get("/users")
+                    .then(res => {
+                        console.log(res.data)
+                        setUsers(res.data)
+                    })
+                }
                 const user = { name: result.user.displayName, email: result.user.email, image: result.user.photoURL }
+
+                
                 const filterUser = users.find(data => data.email === result.user.email)
-                if (!filterUser) {
+                console.log(filterUser)
+                if (filterUser) {
+
+                    navigate("/")
+                } else {
                     axiosSecure.post("/users", user)
                         .then(response => {
                             console.log('User added successfully:', response.data);
@@ -66,10 +79,9 @@ const LogIn = () => {
                             console.error('Error adding user:', error);
                             toast('Error when adding user')
                         });
-                    
                 }
 
-                
+
             })
             .catch(error => {
                 console.log(error)

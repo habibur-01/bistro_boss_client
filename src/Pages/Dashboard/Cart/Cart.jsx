@@ -11,7 +11,7 @@ const Cart = () => {
             <div className="grid grid-cols-7 ">
                 <p className="col-span-3 text-2xl">Total Orders:{cart.length}</p>
                 <p className="col-span-3 text-2xl">Total Price: {totalPrice}</p>
-                <Link to={"/payment" }><button className="btn btn-primary hover:btn-ghost">Go for Payment</button></Link>
+                <Link to={`/dashboard/payment` }><button className="btn btn-primary hover:btn-ghost">Go for Payment</button></Link>
             </div>
             <div className="overflow-x-auto mt-4">  
 

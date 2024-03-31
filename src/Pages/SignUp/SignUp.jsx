@@ -8,6 +8,7 @@ import { AuthContext } from "../../Provider/AuthContext";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../API/AxiosSecure/AxiosSecure";
+import { ImgUpload } from "../../API/ImgUpload/ImgUpload";
 // import ImgUpload from "../../API/ImgUpload/ImgUpload"
 
 
@@ -23,47 +24,43 @@ const Signup = () => {
         const name = form.name.value
         const email = form.email.value
         const password = form.password.value
-        // const photo = form.photo.files[0]
-        // const formData = new FormData();
-        // formData.append("image", photo)
+        const photo = form.photo.files[0]
+        const image = await ImgUpload(photo)
+        
+        if (image.success) {
+            createUser(email, password)
+                .then(result => {
+                    const userInfo = result.user
+                    console.log(userInfo)
+                    updateProfile(result.user, {
+                        displayName: name,
+                        // photoURL: data?.data?.display_url
 
-        // const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=10d60893bb2a6bdf2ef9838320f28d8d`,
-        //     formData)
-        // const image = ImgUpload(photo)
-        // const userImage = data?.data?.display_url
+                    })
 
-        // console.log(userImage)
+                    const user = { name, email, password, }
 
-        createUser(email, password)
-            .then(result => {
-                const userInfo = result.user
-                console.log(userInfo)
-                updateProfile(result.user, {
-                    displayName: name,
-                    // photoURL: data?.data?.display_url
+                    axiosSecure.post("/users", user)
+                        .then(response => {
+                            console.log('User added successfully:', response.data);
+
+                            if (response?.data?.acknowledged === true) {
+                                toast('User added successfully')
+                                navigate("/login")
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error adding user:', error);
+                            toast('Error when adding user')
+                        });
 
                 })
+                .catch(error => {
+                    console.error(error)
+                })
+        }
 
-                const user = { name, email, password,  }
 
-                axiosSecure.post("/users", user)
-                    .then(response => {
-                        console.log('User added successfully:', response.data);
-
-                        if (response?.data?.acknowledged === true) {
-                            toast('User added successfully')
-                            navigate("/login")
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error adding user:', error);
-                        toast('Error when adding user')
-                    });
-
-            })
-            .catch(error => {
-                console.error(error)
-            })
 
 
     }

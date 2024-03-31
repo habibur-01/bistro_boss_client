@@ -24,7 +24,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         const filterUser = users.find(data => data.email === user.email)
-        console.log(filterUser)
+        // console.log(filterUser)
         if (filterUser?.role === 'admin') {
             setIsAdmin(true)
         }
@@ -35,7 +35,7 @@ const Dashboard = () => {
                 <ul className="menu">
 
                     {
-                        isAdmin ? <>
+                        isAdmin=== true ? <>
                             <li><NavLink to={'/dashboard/adminHome'}><FaHome />Admin Home</NavLink></li>
                             <li><NavLink to={'/dashboard/addItem'}><FaCartShopping />Add Items</NavLink></li>
                             <li><NavLink to={'/dashboard/manageItems'}><FaList />Manage Items</NavLink></li>

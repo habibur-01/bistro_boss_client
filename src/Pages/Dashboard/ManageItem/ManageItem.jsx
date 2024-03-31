@@ -13,22 +13,7 @@ const ManageItem = () => {
             return res.data
         }
     })
-    const handleUpdateItem = (item) => {
-        axiosPublic.patch(`/menu/admin/${item._id}`)
-            .then(res => {
-                console.log(res.data)
-                if (res.data.modifiedCount > 0) {
-                    refetch()
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${item.name} is now admin.`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            })
-    }
+    
     const handleDelete = (id) => {
         console.log(id)
         Swal.fire({
@@ -89,7 +74,7 @@ const ManageItem = () => {
                                 <td> ${item.price} </td>
                                 <td>
                                     <button onClick={() => handleDelete(item._id)} className="btn btn-warning btn-xs">Delete</button>
-                                    <Link to={`/updateItem/${item._id}`}><button className=" btn btn-success btn-xs ml-2 ">Update</button></Link>
+                                    <Link to={`/dashboard/updateItem/${item._id}`} state={item}><button className=" btn btn-success btn-xs ml-2 ">Update</button></Link>
                                     
                                 </td>
                             </tr>

@@ -61,6 +61,10 @@ const router = createBrowserRouter([
             path: "cart",
             element: <Cart/>
           },
+          {
+            path: "payment",
+            element: <Payment/>
+          },
           
          
           // Admin
@@ -76,18 +80,16 @@ const router = createBrowserRouter([
             element:<ManageItem/>,
            
           },
-          
+
+          {
+            path:"updateItem/:id",
+            element:<UpdateItem/>,
+          }
         ]
       
     },
-    {
-      path: "/payment",
-      element: <Payment/>
-    },
-    {
-      path:"/updateItem/:id",
-      element:<UpdateItem/>
-    }
+    
+    
     
   ]);
 

@@ -5,7 +5,7 @@ import { PropTypes } from "prop-types";
 const PrivateRoute = ({children}) => {
     
     const {user, loading} = useAuth()
-    console.log(user)
+    // console.log(user)
     if(loading){
         return (<div className="w-full h-[80vh] flex justify-center items-center">
             <span className="loading loading-ring loading-lg"></span>
